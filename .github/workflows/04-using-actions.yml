@@ -17,5 +17,6 @@ jobs:
                ls
                ls 04-using-actions/react-app
                cd 04-using-actions/react-app
+               npm install
                npm ci
 
