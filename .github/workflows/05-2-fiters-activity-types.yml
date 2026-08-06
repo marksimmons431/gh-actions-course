@@ -1,4 +1,14 @@
-name: 05-2-fiters-activity-types.yml
+name: 05 - 2 - Event filters and activity types
 on:
+  pull_request:
+    types: [ closed ]
+    branches:
+      - "main"
 
 jobs:
+  arbitraryname2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run when PR is closed
+        run: |
+          echo "Run when a PR is closed"
