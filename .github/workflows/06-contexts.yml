@@ -12,4 +12,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{toJson(github)}}
         run: |
-          echo "$GITHUB_CONTEXT"
+          echo "JOB NAME: $GITHUB_CONTEXT['job']
+          echo "SHA NAME: $GITHUB_CONTEXT['sha']
+          echo "REP NAME: $GITHUB_CONTEXT['repository']
+          
