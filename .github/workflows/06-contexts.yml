@@ -9,10 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Display Information
-        env:
-          GITHUB_CONTEXT: ${{toJson(github)}}
         run: |
-          echo "JOB NAME: $GITHUB_CONTEXT.job"
-          echo "SHA NAME: $GITHUB_CONTEXT.sha"
-          echo "REP NAME: $GITHUB_CONTEXT.repository"
+          echo "JOB NAME: ${{github.job}}" 
+          echo "SHA NAME: ${{github.sha}}"
+          echo "REP NAME: ${{github.repository}}"
+      - name: Display VARS
+        run: |
+            echo "VAR Value: ${{vars.MY_VAR}}
           
