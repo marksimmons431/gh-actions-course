@@ -9,10 +9,16 @@ on:
         type: boolean
         default: false
         description: "Check box for debug output."
+env:
+  MY_WORKFLOW_VAR: 'workflow'
+  MY_OVERWRITTEN_VAR: 'workflow'
 
 jobs:
   echo-data:
     runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: 'job'
+      MY_OVERWRITTEN_VAR: 'job'
     steps:
       - name: Display Information
         run: |
@@ -22,4 +28,7 @@ jobs:
       - name: Display VARS
         run: |
             echo "VAR Value: ${{vars.MY_VAR}}"
-          
+      - name: Display ENV vars
+        run: |
+          echo "Workflow env var: ${{env.MY_WORKFLOW_VAR }}" 
+          echo "Workflow env var: ${{env.MY_JOB_VAR }}" 
