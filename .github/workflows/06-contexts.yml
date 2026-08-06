@@ -15,5 +15,5 @@ jobs:
           echo "REP NAME: ${{github.repository}}"
       - name: Display VARS
         run: |
-            echo "VAR Value: ${{vars.MY_VAR}}
+            echo "VAR Value: ${{vars.MY_VAR}}"
           
