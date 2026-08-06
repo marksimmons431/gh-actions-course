@@ -1,0 +1,15 @@
+name: 06 - Contexts
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  echo-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display Information
+        env:
+          GITHUB_CONTEXT: ${{toJson(github)}}
+        run: |
+          echo "$GITHUB_CONTEXT"
