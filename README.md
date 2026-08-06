@@ -1,1 +1,1 @@
-Creating a repo for GH-actions course
+Creating a repo for GH-actions course. Adding some text for a PR test.
