@@ -54,4 +54,10 @@ jobs:
       - name: Print Undefined Variables
         run: |
           echo "Org var: ${{env.UNDEFINED_VAR_WITH_DEFAULT}}"
-          
+  echo-last-word:
+    runs-on: ubuntu-latest
+    steps:
+      - name: The last word job
+        run: |
+          echo "The last job from org: ${{vars.OVERWRITTEN_VAR}}"
+          echo "The last job from env: ${{env.OVERWRITTEN_VAR}}"
