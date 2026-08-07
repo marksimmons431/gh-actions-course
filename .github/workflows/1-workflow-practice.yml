@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Step 1
+        if: ${{inputs.run-tests}}
         run: |
-          if "${{inputs.run-tests}}"
           echo "Yes the input checkbox was selected"
       - name: Step 2
+        if: ! ${{inputs.run-tests}}
         run: | 
-          if !"${{inputs.run-tests}}"
           echo "No the input checkbox was not selected"
