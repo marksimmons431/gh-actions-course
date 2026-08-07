@@ -7,8 +7,8 @@ on:
         required: false
         type: boolean
         default: false
-  env:
-    MYVAR = "Github actions MYVAR"
+env:
+  MYVAR: "Github actions MYVAR"
 
 jobs:
   workflow-practice-1:
