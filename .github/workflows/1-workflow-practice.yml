@@ -16,9 +16,9 @@ jobs:
     steps:
       - name: Step 1
         run: |
-          if "${{inputs.run-tests}}
+          if "${{inputs.run-tests}}"
           echo "Yes the input checkbox was selected"
       - name: Step 2
         run: | 
-          if !"${{inputs.run-tests}}
+          if !"${{inputs.run-tests}}"
           echo "No the input checkbox was not selected"
