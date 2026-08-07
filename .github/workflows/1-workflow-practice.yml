@@ -1,0 +1,24 @@
+name: 1 Workflow Practice
+on:
+  workflow_dispatch:
+    inputs:
+      run-tests:
+        description: "Simple checkbox"
+        required: false
+        type: boolean
+        default: false
+  env:
+    MYVAR = "Github actions MYVAR"
+
+jobs:
+  workflow-practice-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step 1
+        run: |
+          if "${{inputs.run-tests}}
+          echo "Yes the input checkbox was selected"
+      - name: Step 2
+        run: | 
+          if !"${{inputs.run-tests}}
+          echo "No the input checkbox was not selected"
