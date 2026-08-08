@@ -18,15 +18,15 @@ jobs:
           echo "Exit with bad status code"
           exit 2
       - name: I will be skipped
-        if: success()
+        if: ${{ success() }}
         run: |
           echo "I will print if previous step was a success"
       - name: I will exectuce
-        if: cancelled()
+        if: ${{ cancelled() }}
         run: |
           echo "I will print if any previous steps failed"
       - name: I will execute
-        if: ! cancelled()
+        if: ${{ ! cancelled() }}
         run: |
           echo "I will always print except when a previous step is cancelled"
       
