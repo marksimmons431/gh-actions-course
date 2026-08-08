@@ -1,0 +1,34 @@
+name: 09 - Functions
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug:
+        type: boolean
+        default: false
+        description: "A bool checkbox"
+
+
+jobs:
+  echo1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failing step
+        run: |
+          echo "Exit with bad status code"
+          exit 2
+      - name: I will be skipped
+        if: success()
+        run: |
+          echo "I will print if previous step was a success"
+      - name: I will exectuce
+        if: cancelled()
+        run: |
+          echo "I will print if any previous steps failed"
+      - name: I will execute
+        if: ! cancelled()
+        run: |
+          echo "I will always print except when a previous step is cancelled"
+      
+        
+
