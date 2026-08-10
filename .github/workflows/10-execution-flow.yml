@@ -21,7 +21,7 @@ jobs:
         run: |
           echo "Running tests...."
       - name: Failing tests ???
-        if: ${{ inputs.pass-unit-tests == 'false' }}
+        if: ${{ !inputs.pass-unit-tests }}
         run: |
           exit 1
 
