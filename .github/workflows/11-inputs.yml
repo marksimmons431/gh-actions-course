@@ -1,0 +1,62 @@
+name: 11 - Working With Inputs
+env:
+  GH_REPO: "marksimmons431/python_pytest"
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        type: boolean
+        default: false
+        description: Skip deployment and only print build output.
+      target:
+        type: environment
+          required: true
+          description: Which env the workflow will target.
+      tag:
+        type: choice
+        options:
+          - v1
+          - v2
+          - v3
+          default: v3
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build
+        run: |
+          echo "Building from tag ${{inputs.tag}}"
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{!inputs.dry_run}}
+    environment: ${{inputs.target}}
+    steps:
+      - name: Deploy
+        run: |
+          echo "Deploying to ${{ inputs.target }}"
+
+  deploy_if_pytest_passes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          repository: $GH_REPO
+          ref: main
+      - name: Get Python Version
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Dependencies
+        run:
+          python -m pip install --upgrade pip
+          pip install pytest
+      - name:  Run Pytest
+          run: |
+            pytest -sv .
+      - name: If successful deploy it.
+          if: ${{ success() }}
+            run: |
+              echo "Looks goood! lets deploy it"
+      
