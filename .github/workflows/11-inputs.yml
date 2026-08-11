@@ -7,11 +7,11 @@ on:
       dry-run:
         type: boolean
         default: false
-        description: Skip deployment and only print build output.
+        description: Skip deployment and only print build output
       target:
         type: environment
-          required: true
-          description: Which env the workflow will target.
+        required: true
+        description: Which env the workflow will target.
       tag:
         type: choice
         options:
