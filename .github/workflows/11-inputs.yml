@@ -37,7 +37,7 @@ jobs:
         run: |
           echo "Deploying to ${{ inputs.target }}"
 
-  deploy_if_pytest_passes:
+  deploy_for_pytest:
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
@@ -60,3 +60,12 @@ jobs:
         if: ${{ success() }}
         run: |
           echo "Looks good! ship it."
+
+  do_something_that_needed:
+    needs:
+      - deploy_for_pytest
+    runs-on: ubuntu-latest
+    steps:
+      - name: Artifacts uploaded pull them now
+        run: |
+          echo "Lets pull those artifacts"
