@@ -43,7 +43,7 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v4
         with:
-          repository: '$GH_REPO'
+          repository: ${{env.GH_REPO}}
           ref: main
       - name: Get Python Version
         uses: actions/setup-python@v5
