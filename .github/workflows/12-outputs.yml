@@ -21,10 +21,11 @@ jobs:
       - name: Build
         id: build
         run: |
-          echo "STATUS: ${{steps.build.outcome}}" >> $GITHUB_OUTPUT 
+          echo ${{steps.build.outcome}} >> $GITHUB_OUTPUT 
 
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Build test
         if: ${{steps.build.outcome == 'success'}}
