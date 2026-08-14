@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       build-status: ${{ steps.build.outputs.status }}
+      output1: ${{ steps.build.outputs.output1 }}
+      output2: ${{ steps.build.outputs.output2 }}
     steps:
       - name: Print value of GITHUB_OUTPUT
         run:
@@ -47,9 +49,10 @@ jobs:
     needs: build
     if: ${{needs.build.outputs.build-status == 'success'}}
     steps:
-      - name: Print Outputs
+      - name: Print Outputs defined in job.outputs up top
         run: |
           echo ${{ steps.build.outputs.output1 }}
+          echo ${{ steps.build.outputs.output2 }}
       - name: Deploy
         run: |
           echo "Deploying"
