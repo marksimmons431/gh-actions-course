@@ -51,7 +51,8 @@ jobs:
     steps:
       - name: Just print output from build in job for build-two
         run: |
-          echo ${{ needs.build.outputs.output1 }}
+          echo "outputfrombuildtwo=FROMBUILD_TWO" >> "$GITHUB_OUTPUT"
+          echo ${{ needs.build-two.outputs.output1 }}
   
 
   deploy:
