@@ -30,6 +30,8 @@ jobs:
           echo "Printing the output of OUTPUT"
           cat "$GITHUB_OUTPUT"
           echo "====== END AGAIN======"
+          echo "Print the path step Build"
+          echo "$GITHUB_OUTPUT"
       - name: Step with mistake
         run: |
           echo "mistake=true" > "$GITHUB_OUTPUT"
@@ -37,6 +39,8 @@ jobs:
           echo "Printing the output of OUTPUT"
           cat "$GITHUB_OUTPUT"
           echo "====== END AGAIN======"
+          echo "Print the path step with mistake"
+          echo "$GITHUB_OUTPUT"
 
   deploy:
     runs-on: ubuntu-latest
