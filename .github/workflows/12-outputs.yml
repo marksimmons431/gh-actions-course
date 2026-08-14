@@ -43,17 +43,30 @@ jobs:
           echo "====== END AGAIN======"
           echo "Print the path step with mistake"
           echo "$GITHUB_OUTPUT"
+  build-two:
+    outputs:
+      outputfrombuildtwo: ${{ steps.build-two.outputs.outputfrombuildtwo }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Just print output from build in job for build-two
+        run: |
+          echo ${{ needs.build.outputs.output1 }}
+  
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build-two
     if: ${{needs.build.outputs.build-status == 'success'}}
     steps:
-      - name: Print Outputs defined in job.outputs up top
+      - name: Print outputs from build job
         run: |
-          echo ${{ steps.build.outputs.output1 }}
-          echo ${{ steps.build.outputs.output2 }}
+          echo ${{ needs.build.outputs.output1 }}
+          echo ${{ needs.build.outputs.output2 }}
       - name: Deploy
         run: |
           echo "Deploying"
+      - name: Print outputs from build-two job
+        run: |
+          echo ${{ needs.build-two.outputs.outputfrombuildtwo }}
 
