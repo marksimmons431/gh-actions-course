@@ -56,15 +56,27 @@ jobs:
           echo ${{ needs.build-two.outputs.output1 }}
   
 
+  build-three:
+    outputs:
+      build_three_output: ${{ steps.build-three.outputs.build_three_output }}
+    runs-on: ubuntu-latest
+    needs: [build, build-two]
+    steps:
+      - name: Just a build three outputs check
+        id: build-three
+        run: |
+          echo "build_three_output=FROM_BUILD_THREE" >> "$GITHUB_OUTPUT"
+          echo ${{ needs.build-three.outputs.build_three_output }}
   deploy:
     runs-on: ubuntu-latest
     needs: [build, build-two ]
     if: ${{needs.build.outputs.build-status == 'success'}}
     steps:
-      - name: Print outputs from build job
+      - name: Print outputs from ALL build jobs
         run: |
           echo ${{ needs.build.outputs.output1 }}
-          echo ${{ needs.build.outputs.output2 }}
+          echo ${{ needs.build-two.outputs.outputfrombuildtwo }}
+          echo ${{ needs.build-three.outputs.build_three_output }}
       - name: Deploy
         run: |
           echo "Deploying"
