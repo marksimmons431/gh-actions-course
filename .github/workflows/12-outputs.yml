@@ -69,7 +69,7 @@ jobs:
           echo ${{ needs.build-three.outputs.build_three_output }}
   deploy:
     runs-on: ubuntu-latest
-    needs: [build, build-two ]
+    needs: [build, build-two, build-three ]
     if: ${{needs.build.outputs.build-status == 'success'}}
     steps:
       - name: Print outputs from ALL build jobs
