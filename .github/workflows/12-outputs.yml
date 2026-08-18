@@ -1,4 +1,6 @@
 name: 12 Working with outputs
+env:
+  GH_REPO: "marksimmons431/python_pytest"
 on:
   workflow_dispatch:
     inputs:
@@ -84,18 +86,18 @@ jobs:
       - name: Check out pytest repo
         uses: actions/checkout@v4
         with:
-          repository: 'marksimmons431/python_pytest'
-          ref: 'main'
+          repository: ${{env.GH_REPO}}
+          ref: main
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.14'
+          python-version: '3.11'
       - name: Install dependencies
         run: |
           python -m pip upgrade --upgrade pip
+          pip install pytest
       - name: Run pytest
         run: |
-          pip install pytest
           pytest -sv .
 
   deploy:
