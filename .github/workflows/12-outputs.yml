@@ -94,7 +94,7 @@ jobs:
           python-version: '3.14'
       - name: Install dependencies
         run: |
-          python -m pip upgrade --upgrade pip
+          python -m pip install --upgrade pip
           pip install pytest
       - name: Run pytest
         run: |
