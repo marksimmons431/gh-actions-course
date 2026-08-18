@@ -67,6 +67,35 @@ jobs:
         run: |
           echo "build_three_output=FROM_BUILD_THREE" >> "$GITHUB_OUTPUT"
           echo ${{ needs.build-three.outputs.build_three_output }}
+  build-four:
+    outputs:
+      build-four-output: ${{ steps.build-four.outputs.build-four-output }}
+    runs-on: ubuntu-latest
+    needs: [build,build-two,build-three]
+    steps:
+      - name: Step four stuff echo all levels
+        id: build-four
+        run: |
+          echo "build_four_stuff=FROM_BUILD_FOUR" >> "$GITHUB_OUTPUT"
+          echo ${{ needs.build.outputs.output1 }}
+          echo ${{ needs.build-two.outputs.outputfrombuildtwo }}
+          echo ${{ needs.build-three.outputs.build-three-output }}
+          echo ${{ needs.build-four.outputs.build-four-output }}
+      - name: Check out pytest repo
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          python -m pip upgrade --upgrade pip
+      - name: Run pytest
+        run: |
+          pip install pytest
+          pytest -sv .
+
   deploy:
     runs-on: ubuntu-latest
     needs: [build, build-two, build-three ]
