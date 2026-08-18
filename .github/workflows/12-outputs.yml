@@ -91,11 +91,9 @@ jobs:
         with:
           python-version: '3.14'
       - name: Install dependencies
-        working-directory: ./python_pytest
         run: |
           python -m pip upgrade --upgrade pip
       - name: Run pytest
-        working-directory: ./python_pytest
         run: |
           pip install pytest
           pytest -sv .
