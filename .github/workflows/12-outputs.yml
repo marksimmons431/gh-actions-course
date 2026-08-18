@@ -83,6 +83,9 @@ jobs:
           echo ${{ needs.build-four.outputs.build-four-output }}
       - name: Check out pytest repo
         uses: actions/checkout@v4
+        with:
+          repository: 'marksimmons431/python_pytest'
+          ref: 'main'
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
