@@ -1,0 +1,30 @@
+name: Capture Variables and Use Them
+jobs:
+  provision:
+    runs-on: ubuntu-latest
+    outputs:
+      ip:       ${{ steps.run_script.outputs.extracted_ip }}
+      hostname: ${{ steps.run_script.outputs.extracted_hostname }}
+
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Source script and export to GitHub
+        id: run_script
+        run: |
+          # Use 'source' or '.' so the variables load into this step's shell environment
+          chmod +x ./scripts/deploy.sh
+          source ./scripts/deploy.sh
+          # Now write those loaded variables into GITHUB_OUTPUT
+          echo "extracted_ip=$IP" >> $GITHUB_OUTPUT
+          echo "extracted_hostname=$HOSTNAME" >> $GITHUB_OUTPUT
+
+  configure:
+    runs-on: ubuntu-latest
+    needs: provision
+    steps:
+      - name: Print IP
+        run: |
+          echo "IP is ${{ needs.provision.outputs.ip }}"
+          echo "HOSTNAME is ${{ needs.provision.outputs.hostname }}"
+
