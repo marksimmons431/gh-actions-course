@@ -1,4 +1,6 @@
 name: Capture Variables and Use Them
+on:
+  workflow_dispatch:
 jobs:
   provision:
     runs-on: ubuntu-latest
