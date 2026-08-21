@@ -1,4 +1,4 @@
-name: Capture Variables and Use Them
+name: 25 - Capture Variables and Use Them
 on:
   workflow_dispatch:
 jobs:
