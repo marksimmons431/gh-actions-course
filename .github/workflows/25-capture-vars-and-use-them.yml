@@ -10,7 +10,7 @@ jobs:
 
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Source script and export to GitHub
         id: run_script
         run: |
