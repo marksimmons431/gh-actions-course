@@ -15,8 +15,8 @@ jobs:
         id: run_script
         run: |
           # Use 'source' or '.' so the variables load into this step's shell environment
-          chmod +x ./scripts/deploy.sh
-          source ./scripts/deploy.sh
+          chmod +x ./scripts/print-values.sh
+          source ./scripts/print-values.sh
           # Now write those loaded variables into GITHUB_OUTPUT
           echo "extracted_ip=$IP" >> $GITHUB_OUTPUT
           echo "extracted_hostname=$HOSTNAME" >> $GITHUB_OUTPUT
