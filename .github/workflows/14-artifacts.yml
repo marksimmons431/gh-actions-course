@@ -1,0 +1,40 @@
+name: 14 - Working with artifacts
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubutunest-latest
+    defaults:
+      run:
+        working-directory: ./14-artifacts/my-app
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - name: Cache Dependencies
+        uses: actions/cache@v4
+        id: cache
+        with:
+          path: 14-artifacts/my-app/node_modules
+          key: deps-node-modules-${{ hashFiles('14-artifacts/my-app/package-lock.json') }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-app
+          path: 14-artifacts/my-app/upload
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: my-app
+          path: build
+      - name: Show folder structure
+        run: ls -R
+
