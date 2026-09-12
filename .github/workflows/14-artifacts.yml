@@ -28,6 +28,7 @@ jobs:
           path: 14-artifacts/my-app/upload
 
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
