@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: NoahLundSyrdal/prReviewer@v1.1
         with:
-          apiKey: ${{ secrets.OPENAI_API_KEY }}
+          api_key: ${{ secrets.OPENAI_API_KEY }}
