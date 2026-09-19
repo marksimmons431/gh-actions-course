@@ -1,0 +1,25 @@
+name: Copilot Code Review
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - '**/*.py' # Only trigger when Python files change
+
+permissions:
+  contents: read
+  pull-requests: write # Required for Copilot to leave inline comments and reviews
+
+jobs:
+  review:
+    name: GitHub Copilot Review
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Copilot Code Review
+        uses: github/copilot-code-review-action@v1 # Official GitHub Action for Copilot Code Review
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
