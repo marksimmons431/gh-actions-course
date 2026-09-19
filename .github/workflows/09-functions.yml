@@ -27,7 +27,7 @@ jobs:
       - name: Failing step
         run: |
           echo "Exit with bad status code"
-          exit 2
+          exit 0
       - name: I will be skipped
         if: ${{ success() }}
         run: |
