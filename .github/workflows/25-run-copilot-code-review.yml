@@ -1,4 +1,4 @@
-name: PR Review
+name: 26 - Run Copilot Code Review
 on:
   workflow_dispatch:
   pull_request:
@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: NoahLundSyrdal/prReviewer@v1.1
         with:
-          api_key: ${{ secrets.OPENAI_API_KEY }}
+          token: ${{ secrets.GITHUB_TOKEN }}
