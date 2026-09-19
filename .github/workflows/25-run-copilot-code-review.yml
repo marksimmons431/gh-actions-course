@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: NoahLundSyrdal/prReviewer@v1.1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          apiKey: ${{ secrets.OPENAI_API_KEY }}
